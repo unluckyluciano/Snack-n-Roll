@@ -1,2 +1,21 @@
 /build/
+# ----- Build / IDE -----
 /target/
+/bin/
+/Servers/
+/.classpath
+.project
+.settings/
+/.idea/
+/*.iml
+.vscode/
+/*.log
+
+# ----- OS -----
+.DS_Store
+Thumbs.db
+
+# ----- Webapp (static) -----
+# Non ignorare la cartella, solo i segreti:
+src/main/webapp/META-INF/context.xml
+
