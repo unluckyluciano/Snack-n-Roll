@@ -13,22 +13,31 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
-  <dependencies>
-    <!-- Jakarta Servlet 6.0 (Tomcat 10.1.x) - fornita dal container -->
-    <dependency>
-      <groupId>jakarta.servlet</groupId>
-      <artifactId>jakarta.servlet-api</artifactId>
-      <version>6.0.0</version>
-      <scope>provided</scope>
-    </dependency>
+<dependencies>
+  <!-- Servlet API (fornita da Tomcat) -->
+  <dependency>
+    <groupId>jakarta.servlet</groupId>
+    <artifactId>jakarta.servlet-api</artifactId>
+    <version>6.0.0</version>
+    <scope>provided</scope>
+  </dependency>
 
-    <!-- JSTL per Jakarta EE 10 -->
-    <dependency>
-      <groupId>org.glassfish.web</groupId>
-      <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-      <version>3.0.1</version>
-    </dependency>
-  </dependencies>
+  <!-- JSTL API -->
+  <dependency>
+    <groupId>jakarta.servlet.jsp.jstl</groupId>
+    <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+    <version>3.0.0</version>
+  </dependency>
+
+  <!-- JSTL Implementazione -->
+  <dependency>
+    <groupId>org.glassfish.web</groupId>
+    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+    <version>3.0.1</version>
+  </dependency>
+</dependencies>
+
+
 
   <build>
     <finalName>snacknroll</finalName>
