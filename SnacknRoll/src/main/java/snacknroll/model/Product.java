@@ -21,6 +21,6 @@ public class Product {
   public void setPrezzo(java.math.BigDecimal prezzo){ this.prezzo = prezzo; }
   public String getImageUrl(){ return imageUrl; }
   public void setImageUrl(String imageUrl){ this.imageUrl = imageUrl; }
-  public int isDisponibile(){ return qta; }
-  public void setDisponibile(int qta){ this.qta = qta; }
+  public int getQta(){ return qta; }
+  public void setQta(int qta){ this.qta = qta; }
 }
