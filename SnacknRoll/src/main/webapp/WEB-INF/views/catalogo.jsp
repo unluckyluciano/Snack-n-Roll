@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ include file="/WEB-INF/includes/header.jspf" %>
 
-<link rel="stylesheet" href="<c:url value='/styles/main.css'/>"/>
+<link rel="stylesheet" href="<c:url value='/styles/styles.css'/>"/>
 
 <main class="sr-main" role="main">
   <h2 class="sr-section-title">Catalogo</h2>

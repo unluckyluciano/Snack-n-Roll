@@ -4,9 +4,12 @@
 <header class="sr-header" role="banner">
   <div class="sr-header__top">
     <a class="sr-logo" href="${pageContext.request.contextPath}/catalogo" aria-label="Snack’n’Roll - Home">
-      <span class="sr-logo__emoji">🍿</span>
+      <span class="sr-logo__emoji">
+  			<img class="sr-logo__img" src="<c:url value='/images/logo.png'/>" alt="Snack’n’Roll"/>
+      </span>
       <span class="sr-logo__text">Snack’n’Roll</span>
     </a>
+    
 
     <form class="sr-search" action="${pageContext.request.contextPath}/catalogo" method="get" role="search" aria-label="Cerca prodotti">
       <input class="sr-input" type="search" name="q" placeholder="Cerca snack, bibite, brand…" value="${param.q}" />

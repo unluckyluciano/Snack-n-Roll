@@ -1,7 +1,7 @@
 package snacknroll.model;
 
 public class Product {
-  private long id;
+  private long id_prodotto;
   private String nome;
   private String descrizione;
   private String categoria;
@@ -9,8 +9,8 @@ public class Product {
   private String imageUrl;
   private int qta;
 
-  public long getId(){ return id; }
-  public void setId(long id){ this.id = id; }
+  public long getId(){ return id_prodotto; }
+  public void setId(long id){ this.id_prodotto = id_prodotto; }
   public String getNome(){ return nome; }
   public void setNome(String nome){ this.nome = nome; }
   public String getDescrizione(){ return descrizione; }

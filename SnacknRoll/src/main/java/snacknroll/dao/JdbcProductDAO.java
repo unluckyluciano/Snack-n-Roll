@@ -11,18 +11,18 @@ public class JdbcProductDAO implements ProductDAO {
 
   private Product map(ResultSet rs) throws SQLException {
     Product p = new Product();
-    p.setId(rs.getLong("id"));
+    p.setId(rs.getLong("id_prodotto"));
     p.setNome(rs.getString("nome"));
     p.setDescrizione(rs.getString("descrizione"));
     p.setCategoria(rs.getString("categoria"));
     p.setPrezzo(rs.getBigDecimal("prezzo"));
-    p.setImageUrl(rs.getString("image_url"));
+    p.setImageUrl(rs.getString("immagine_url"));
     p.setQta(rs.getInt("qta"));
     return p;
   }
 
   @Override public List<Product> findAll() {
-    String sql = "SELECT * FROM prodotto WHERE qta >= 1 ORDER BY created_at DESC";
+    String sql = "SELECT * FROM prodotto WHERE qta >= 1 ORDER BY id_prodotto DESC";
     try (Connection c = DataSourceProvider.get().getConnection();
          PreparedStatement ps = c.prepareStatement(sql);
          ResultSet rs = ps.executeQuery()) {
@@ -33,7 +33,7 @@ public class JdbcProductDAO implements ProductDAO {
   }
 
   @Override public List<Product> findByCategory(String categoria) {
-    String sql = "SELECT * FROM prodotto WHERE qta >= 1 AND categoria = ? ORDER BY created_at DESC";
+    String sql = "SELECT * FROM prodotto WHERE qta >= 1 AND categoria = ? ORDER BY id_prodotto DESC";
     try (Connection c = DataSourceProvider.get().getConnection();
          PreparedStatement ps = c.prepareStatement(sql)) {
       ps.setString(1, categoria);
@@ -50,7 +50,7 @@ public class JdbcProductDAO implements ProductDAO {
       SELECT * FROM prodotto
       WHERE qta >= 1
         AND (LOWER(nome) LIKE ? OR LOWER(descrizione) LIKE ? OR LOWER(categoria) LIKE ?)
-      ORDER BY created_at DESC
+      ORDER BY id_prodotto DESC
     """;
     String like = "%" + q.toLowerCase() + "%";
     try (Connection c = DataSourceProvider.get().getConnection();
@@ -65,7 +65,7 @@ public class JdbcProductDAO implements ProductDAO {
   }
 
   @Override public Optional<Product> findById(long id) {
-    String sql = "SELECT * FROM prodotto WHERE id = ?";
+    String sql = "SELECT * FROM prodotto WHERE id_prodotto = ?";
     try (Connection c = DataSourceProvider.get().getConnection();
          PreparedStatement ps = c.prepareStatement(sql)) {
       ps.setLong(1, id);

@@ -8,5 +8,5 @@ public interface ProductDAO {
   List<Product> findAll();
   List<Product> findByCategory(String categoria);
   List<Product> searchByQuery(String q);
-  Optional<Product> findById(long id);
+  Optional<Product> findById(long id_prodotto);
 }
