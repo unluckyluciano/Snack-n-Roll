@@ -73,12 +73,12 @@ body{
 .sr-quick__icon{
   position:relative;
   display:inline-flex; align-items:center; justify-content:center;
-  width:40px; height:40px; border-radius:999px;
+  width:48px; height:48px; border-radius:999px;
   text-decoration:none; transition:background .2s ease, transform .06s ease;
 }
 .sr-quick__icon:hover{ background:rgba(255,255,255,.15) }
 .sr-quick__icon:active{ transform:scale(.98) }
-.sr-icon{ width:20px; height:20px; display:block }
+.sr-icon{ width:26px; height:26px; display:block }
 
 /* Forza qualunque icona (nera o rossa) a diventare BIANCA nell’header */
 .sr-icon--toWhite{ filter: brightness(0) invert(1); }
@@ -120,9 +120,16 @@ body{
    Categorie (pill)
    ========================= */
 .sr-cats{
-  max-width:1200px; margin:0 auto 1rem;
-  display:flex; gap:.6rem; overflow:auto; padding:.4rem 0 1rem;
+  max-width:1200px;
+  width:100%;
+  margin:1.25rem auto 1rem;    
+  padding:.4rem 0 1rem;
+  display:flex;
+  gap:.6rem;
+  overflow:auto;
+  justify-content:left;     
 }
+
 .sr-chip{
   display:inline-block; padding:.5rem .9rem; border-radius:999px;
   background:#f1e9ff; color:#4a2a7a; text-decoration:none;
@@ -189,3 +196,28 @@ body{
 }
 .sr-footer__nav a{ color:#cfc8e8; text-decoration:none; margin-left:1rem }
 .sr-footer__nav a:hover{ text-decoration:underline }
+
+@media (max-width: 992px){
+  .sr-quick__icon { width:44px; height:44px; }
+  .sr-icon        { width:22px; height:22px; }
+  .sr-cats{ margin:1.25rem auto .9rem; }
+}
+
+@media (max-width: 800px){
+  .sr-header__bar{ grid-template-columns:1fr; row-gap:.75rem; }
+  .sr-brand{ justify-content:center; }
+  .sr-quick{ justify-content:center; }
+  .sr-cats{
+    justify-content:flex-start;  
+    margin:.9rem auto .75rem;
+  }
+}
+
+@media (max-width: 480px){
+  .sr-logo__img{ height:50px; }
+  .sr-input{ font-size:.95rem; padding:.8rem 2.6rem .8rem 1rem; }
+  .sr-quick__icon { width:44px; height:44px; }  
+  .sr-icon        { width:22px; height:22px; }
+  .sr-chip{ padding:.45rem .8rem; }
+}
+

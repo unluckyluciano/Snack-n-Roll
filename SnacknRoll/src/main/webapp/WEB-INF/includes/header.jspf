@@ -54,7 +54,7 @@
     </nav>
   </div>
 
-  <!-- CATEGORIE (resta come prima) -->
+  <!-- CATEGORIE -->
   <nav class="sr-cats" aria-label="Categorie">
     <a class="sr-chip ${empty param.cat or param.cat=='tutte' ? 'sr-chip--active' : ''}"
        href="${pageContext.request.contextPath}/catalogo?cat=tutte">Catalogo</a>
