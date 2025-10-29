@@ -2,45 +2,67 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <header class="sr-header" role="banner">
-  <div class="sr-header__top">
-    <a class="sr-logo" href="${pageContext.request.contextPath}/catalogo" aria-label="Snack’n’Roll - Home">
-      <span class="sr-logo__emoji">
-  			<img class="sr-logo__img" src="<c:url value='/images/logo.png'/>" alt="Snack’n’Roll"/>
-      </span>
-      <span class="sr-logo__text">Snack’n’Roll</span>
+  <div class="sr-header__bar">
+    <!-- BRAND (sx) -->
+    <a class="sr-brand" href="${pageContext.request.contextPath}/catalogo" aria-label="Snack’n’Roll - Home">
+      <img class="sr-logo__img" src="<c:url value='/images/logo.png'/>" alt="Snack’n’Roll"/>
+      <span class="sr-brand__name">Snack’n’Roll</span>
     </a>
-    
 
+    <!-- SEARCH (centro) -->
     <form class="sr-search" action="${pageContext.request.contextPath}/catalogo" method="get" role="search" aria-label="Cerca prodotti">
-      <input class="sr-input" type="search" name="q" placeholder="Cerca snack, bibite, brand…" value="${param.q}" />
-      <button class="sr-btn sr-btn--primary" type="submit">Cerca</button>
+      <input class="sr-input sr-input--withicon" type="search" name="q"
+             placeholder="Cerca snack, bibite, brand…" value="${param.q}" />
+      <span class="sr-input__icon" aria-hidden="true" title="Cerca">
+        <!-- SVG inline con colore dal CSS (var --sr-primary) -->
+        <svg class="sr-icon sr-icon--search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" focusable="false">
+          <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+          <line x1="16.5" y1="16.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
     </form>
 
+    <!-- QUICK ICONS (dx) -->
     <nav class="sr-quick" aria-label="Azioni rapide">
+      <!-- Wishlist -->
+      <a class="sr-quick__icon" href="${pageContext.request.contextPath}/wishlist" title="Wishlist" aria-label="Wishlist">
+        <img class="sr-icon sr-icon--toWhite" src="<c:url value='/images/icons/heart.svg'/>" alt=""/>
+        <c:if test="${sessionScope.WISHLIST_COUNT gt 0}">
+          <span class="sr-badge-pill">${sessionScope.WISHLIST_COUNT}</span>
+        </c:if>
+      </a>
+      <!-- Utente -->
       <c:choose>
         <c:when test="${not empty sessionScope.AUTH_USER}">
-          <a class="sr-quick__link" href="${pageContext.request.contextPath}/ordini">Ordini</a>
-          <a class="sr-quick__link" href="${pageContext.request.contextPath}/logout">Logout</a>
+          <a class="sr-quick__icon" href="${pageContext.request.contextPath}/profilo" title="Profilo" aria-label="Profilo">
+            <img class="sr-icon sr-icon--toWhite" src="<c:url value='/images/icons/user.svg'/>" alt=""/>
+          </a>
         </c:when>
         <c:otherwise>
-          <a class="sr-quick__link" href="${pageContext.request.contextPath}/login">Login</a>
-          <a class="sr-quick__link" href="${pageContext.request.contextPath}/register">Registrati</a>
+          <a class="sr-quick__icon" href="${pageContext.request.contextPath}/login" title="Accedi o registrati" aria-label="Accedi o registrati">
+            <img class="sr-icon sr-icon--toWhite" src="<c:url value='/images/icons/user.svg'/>" alt=""/>
+          </a>
         </c:otherwise>
       </c:choose>
-      <a class="sr-quick_link sr-quick_cart" href="${pageContext.request.contextPath}/carrello" aria-label="Vai al carrello">🛒</a>
+      <!-- Carrello -->
+      <a class="sr-quick__icon" href="${pageContext.request.contextPath}/carrello" title="Carrello" aria-label="Vai al carrello">
+        <img class="sr-icon sr-icon--toWhite" src="<c:url value='/images/icons/cart.svg'/>" alt=""/>
+        <c:if test="${sessionScope.CART_COUNT gt 0}">
+          <span class="sr-badge-pill">${sessionScope.CART_COUNT}</span>
+        </c:if>
+      </a>
     </nav>
   </div>
-  
-  <!-- CATEGORIE A PILL -->
+
+  <!-- CATEGORIE (resta come prima) -->
   <nav class="sr-cats" aria-label="Categorie">
     <a class="sr-chip ${empty param.cat or param.cat=='tutte' ? 'sr-chip--active' : ''}"
-       href="${pageContext.request.contextPath}/catalogo?cat=catalogo">Catalogo</a>
+       href="${pageContext.request.contextPath}/catalogo?cat=tutte">Catalogo</a>
     <a class="sr-chip ${param.cat=='dolci' ? 'sr-chip--active' : ''}"
        href="${pageContext.request.contextPath}/catalogo?cat=dolci">Dolci</a>
     <a class="sr-chip ${param.cat=='salati' ? 'sr-chip--active' : ''}"
        href="${pageContext.request.contextPath}/catalogo?cat=salati">Salati</a>
     <a class="sr-chip ${param.cat=='bevande' ? 'sr-chip--active' : ''}"
        href="${pageContext.request.contextPath}/catalogo?cat=bevande">Bevande</a>
-   
   </nav>
 </header>

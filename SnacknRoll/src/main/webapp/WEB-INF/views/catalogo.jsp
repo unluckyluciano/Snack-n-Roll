@@ -1,6 +1,8 @@
+<!DOCTYPE html>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ include file="/WEB-INF/includes/header.jspf" %>
+
 
 <link rel="stylesheet" href="<c:url value='/styles/styles.css'/>"/>
 
