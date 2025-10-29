@@ -64,5 +64,7 @@
        href="${pageContext.request.contextPath}/catalogo?cat=salati">Salati</a>
     <a class="sr-chip ${param.cat=='bevande' ? 'sr-chip--active' : ''}"
        href="${pageContext.request.contextPath}/catalogo?cat=bevande">Bevande</a>
+        <a class="sr-chip ${param.cat=='mystery_box' ? 'sr-chip--active' : ''}"
+       href="${pageContext.request.contextPath}/catalogo?cat=mystery_box">Mystery Box</a>
   </nav>
 </header>

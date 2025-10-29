@@ -9,6 +9,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.ServletException;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;   
 
 @WebServlet("/catalogo")
 public class ProductServlet extends HttpServlet {
@@ -16,16 +17,32 @@ public class ProductServlet extends HttpServlet {
 
   @Override
   protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-    String q = req.getParameter("q");
-    String cat = req.getParameter("cat");
+    String q    = req.getParameter("q");
+    String slug = req.getParameter("cat");
 
     List<Product> prodotti;
+
     if (q != null && !q.isBlank()) {
       prodotti = productDAO.searchByQuery(q);
-    } else if (cat != null && !cat.isBlank() && !"tutte".equalsIgnoreCase(cat)) {
-      prodotti = productDAO.findByCategory(cat);
+
     } else {
-      prodotti = productDAO.findAll();
+      Map<String,String> catMap = Map.of(
+          "dolci",   "Dolci",
+          "salati",  "Salati",
+          "bevande", "Bevande",
+          "mystery_box", "Mystery Box"
+      );
+
+      if (slug != null && !slug.isBlank() && !"tutte".equalsIgnoreCase(slug)) {
+        String dbCat = catMap.get(slug.toLowerCase());
+        if (dbCat != null) {
+          prodotti = productDAO.findByCategory(dbCat);
+        } else {
+          prodotti = productDAO.findAll();
+        }
+      } else {
+        prodotti = productDAO.findAll();
+      }
     }
 
     req.setAttribute("prodotti", prodotti);
