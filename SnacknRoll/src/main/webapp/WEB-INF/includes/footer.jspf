@@ -2,10 +2,5 @@
 <footer class="sr-footer" role="contentinfo">
   <div class="sr-footer__inner">
     <p>© <%= java.time.Year.now() %> Snack’n’Roll — Progetto TSW</p>
-    <nav class="sr-footer__nav" aria-label="Link utili">
-      <a href="#">Contatti</a>
-      <a href="#">Resi &amp; Spedizioni</a>
-      <a href="#">Privacy</a>
-    </nav>
   </div>
 </footer>
