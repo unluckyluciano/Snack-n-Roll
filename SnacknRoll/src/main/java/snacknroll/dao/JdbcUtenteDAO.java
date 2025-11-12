@@ -76,13 +76,17 @@ public class JdbcUtenteDAO implements UtenteDAO {
         if (keys.next()) return keys.getInt(1);
       }
       throw new RuntimeException("ID generato non trovato");
-    } catch (SQLException e) {
-      if (e.getSQLState() != null && e.getSQLState().startsWith("23")) {
-        throw new RuntimeException("Email già registrata", e);
+    } catch (SQLIntegrityConstraintViolationException e) {
+        int code = e.getErrorCode();
+        // 1062 = duplicate entry (unique/email)
+        if (code == 1062) throw new RuntimeException("Email già registrata", e);
+        // 1048 = column cannot be null
+        if (code == 1048) throw new RuntimeException("Campo obbligatorio mancante: " + e.getMessage(), e);
+        throw new RuntimeException("Violazione vincoli: " + e.getMessage(), e);
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
       }
-      throw new RuntimeException(e);
     }
-  }
 
   private Utente map(ResultSet rs) throws SQLException {
     Utente u = new Utente();

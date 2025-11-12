@@ -3,12 +3,12 @@
 <html lang="it">
 
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<link rel="stylesheet" href="<c:url value='/styles/styles.css'/>"/>
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Registrati • Snack'n'Roll</title>
+  <link rel="stylesheet" href="<c:url value='/styles/styles.css'/>"/>
 </head>
 <body class="auth-page">
   <form class="auth-form" method="post" action="${pageContext.request.contextPath}/register" autocomplete="on" novalidate>

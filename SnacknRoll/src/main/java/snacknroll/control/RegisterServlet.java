@@ -38,13 +38,18 @@ public class RegisterServlet extends HttpServlet {
       resp.sendError(HttpServletResponse.SC_CONFLICT, "Email già registrata");
       return;
     }
+    
+    String hash = PasswordUtils.hash(password);
+    if (hash == null || !hash.startsWith("$2")) { 
+      throw new RuntimeException("Errore generazione hash password");
+    }
 
     Utente u = new Utente();
     u.setNome(nome);
     u.setCognome(cognome);
     u.setEmail(email.toLowerCase());
-    u.setPasswordHash(PasswordUtils.hash(password));
-    u.setRuolo("USER");
+    u.setPasswordHash(hash);
+    u.setRuolo("CLIENTE");
     u.setIndirizzoSpedizione(indirizzo);
 
     int id = utenteDAO.create(u);
@@ -63,5 +68,5 @@ public class RegisterServlet extends HttpServlet {
   }
 
   private static boolean isBlank(String s) { return s == null || s.isBlank(); }
-  private static String trim(String s) { return s == null ? null : s.trim(); }
+  private static String trim(String s){ return s == null ? "" : s.trim(); }
 }

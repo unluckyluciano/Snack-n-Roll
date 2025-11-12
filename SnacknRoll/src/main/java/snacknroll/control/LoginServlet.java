@@ -37,12 +37,12 @@ public class LoginServlet extends HttpServlet {
     session.setAttribute("userRuolo", u.getRuolo());
     
     String target = (String) session.getAttribute("postLoginRedirect");
-    if (target != null) {
-      session.removeAttribute("postLoginRedirect");
-      resp.sendRedirect(target);
-    } else {
-      resp.sendRedirect(req.getContextPath() + "/");
-    }
+    if (target != null && !target.isBlank()) {
+        session.removeAttribute("postLoginRedirect");
+        if (!target.startsWith("/")) target = "/";
+        resp.sendRedirect(target);
+        return;
+      }
 
     session.setMaxInactiveInterval(60 * 60 * 2); 
 
