@@ -5,7 +5,6 @@
          version="6.0">
   <display-name>Snack'n'Roll</display-name>
 
-  <!-- JNDI DataSource: DEVE combaciare con META-INF/context.xml -->
   <resource-ref>
     <description>DB Snack’n’Roll</description>
     <res-ref-name>jdbc/snacknroll</res-ref-name>
@@ -16,4 +15,4 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-</web-app> 
+</web-app>
